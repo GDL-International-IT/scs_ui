@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputsContainer {
+    margin-top: 4.69rem;
+    margin-bottom: 1.56rem;
+    height: 8.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.buttonContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 6rem;
+}
