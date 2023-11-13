@@ -6,6 +6,7 @@ import Products from "../../components/Products/Products"
 import CreateCustom from "../../components/CreateCustom/CreateCustom"
 import Projects from "../../components/Projects/Projects"
 import QuickTool from "../../components/QuickTool/QuickTool"
+import ProjectEditor from "../../components/ProjectEditor/ProjectEditor"
 
 const MainPage = () => {
     const activeComponent = useSelector(state => state.activeComponent)
@@ -20,6 +21,7 @@ const MainPage = () => {
                 { activeComponent === 'createCustom' && <CreateCustom/> }
                 { activeComponent === 'projects' && <Projects/> }
                 { activeComponent === 'quickTool' && <QuickTool/> }
+                {/*<ProjectEditor />*/}
             </>
         </div>
     )

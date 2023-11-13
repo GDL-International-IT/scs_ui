@@ -3,6 +3,7 @@ import Menu from "./components/Menu/Menu"
 import {useSelector} from "react-redux"
 import MainPage from "./pages/MainPage/MainPage"
 import LoginPage from "./pages/LoginPage/LoginPage"
+import {useRef, useState} from "react"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
                     <MainPage/>
                     :
                     <LoginPage/>
+                // <DraggableImage />
 
 
             }
@@ -25,5 +27,7 @@ function App() {
         </div>
     )
 }
+
+
 
 export default App

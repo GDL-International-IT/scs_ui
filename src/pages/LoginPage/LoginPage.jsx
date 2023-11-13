@@ -7,6 +7,7 @@ import Button from "../../ui/Button/Button"
 import RightArrowIcon from "../../assets/svg/RightArrowIcon"
 import {useDispatch} from "react-redux"
 import {loginAction} from "../../store/reducer"
+import LoginIcon from "../../assets/svg/LoginIcon"
 
 const LoginPage = () => {
     const loginInput = useInput('', 'LoginPage')
@@ -21,27 +22,25 @@ const LoginPage = () => {
             <LogoIcon width={'15.625rem'} height={'3.75rem'}/>
             <div className={classes.inputsContainer}>
                 <Input
-                    width={'25rem'}
+                    style={{width: '25rem'}}
                     placeholder={loginInput.placeholder}
                     onChange={loginInput.onChange}
                     value={loginInput.value}
                 />
                 <Input
-                    width={'25rem'}
+                    style={{width: '25rem'}}
                     placeholder={passwordInput.placeholder}
                     onChange={passwordInput.onChange}
                     value={passwordInput.value}
                 />
             </div>
             <Button
-                width={'17.9375rem'}
                 onClick={login}
-                padding={'.88rem 0'}
-                fontSize={'1.125rem'}
+                style={{width: '17.9375rem', padding: '.88rem 0', fontSize: '1.125rem'}}
             >
                 <div className={classes.buttonContent}>
                     <span>LOGIN</span>
-                    <RightArrowIcon width={'1.125rem'} height={'1.125rem'}/>
+                    <LoginIcon width={'1.125rem'} height={'1.125rem'}/>
                 </div>
 
             </Button>
