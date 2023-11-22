@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './MainPage.module.css'
+import styles from './MainPage.module.css'
 import Menu from "../../components/Menu/Menu"
 import {useSelector} from "react-redux"
 import Products from "../../components/Products/Products"
@@ -12,7 +12,7 @@ const MainPage = () => {
     const activeComponent = useSelector(state => state.activeComponent)
     console.log(activeComponent)
     return (
-        <div className={classes.container}>
+        <div className={styles.container}>
             <>
                 <Menu/>
             </>

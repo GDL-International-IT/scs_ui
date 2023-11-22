@@ -1,8 +1,8 @@
 import React from 'react'
-
+import styles from './QuickTool.module.css'
 const QuickTool = () => {
     return (
-        <div>
+        <div className={styles.container}>
             QuickTool
         </div>
     )

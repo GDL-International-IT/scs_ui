@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios"
-import classes from "./Projects.module.css"
+import styles from "./Projects.module.css"
 import Button from "../../ui/Button/Button"
 import Checkbox from "../Checkbox/Checkbox"
 
@@ -43,50 +43,50 @@ const Projects = () => {
 
 
     return (
-        <div className={classes.container}>
+        <div className={styles.container}>
 
-            <table className={classes.table}>
+            <table className={styles.table}>
                 <thead>
                 <tr>
-                    <td className={classes.tableRowTitle}>Project Name</td>
-                    <td className={classes.tableRowTitle}>SO Reference</td>
-                    <td className={classes.tableRowTitle}>Select</td>
-                    <td className={classes.tableRowTitle}>View product</td>
-                    <td className={classes.tableRowTitle}>Delete</td>
+                    <td className={styles.tableRowTitle}>Project Name</td>
+                    <td className={styles.tableRowTitle}>SO Reference</td>
+                    <td className={styles.tableRowTitle}>Select</td>
+                    <td className={styles.tableRowTitle}>View product</td>
+                    <td className={styles.tableRowTitle}>Delete</td>
                 </tr>
                 </thead>
                 <tbody>
                 {projects.map(item =>
-                    <tr className={classes.tableRow} key={item.id}>
-                        <td className={classes.tableItem}><a href="#" style={{color: 'black'}}>{item.name}</a></td>
-                        <td className={classes.tableItem}>Test</td>
-                        <td className={classes.tableItem} onClick={() => addActiveProjects(item.name)}><Checkbox/></td>
-                        <td className={classes.tableItem}>
+                    <tr className={styles.tableRow} key={item.id}>
+                        <td className={styles.tableItem}><a href="#" style={{color: 'black'}}>{item.name}</a></td>
+                        <td className={styles.tableItem}>Test</td>
+                        <td className={styles.tableItem} onClick={() => addActiveProjects(item.name)}><Checkbox/></td>
+                        <td className={styles.tableItem}>
                             <Button
                                 style={{fontSize: '1.0625rem', padding: '0.5rem 0.875rem', borderRadius: '.5rem'}}
                             >Open project</Button>
                         </td>
-                        <td className={classes.tableItem}>
+                        <td className={styles.tableItem}>
                             <a href="#" style={{color: 'black'}}>Delete</a>
                         </td>
                     </tr>
                 )}
                 </tbody>
             </table>
-            <div className={classes.bottomContainer}>
-                <div className={classes.pageNavContainer}>
+            <div className={styles.bottomContainer}>
+                <div className={styles.pageNavContainer}>
                     <Button
                         style={{fontSize: '1.0625rem', padding: '0.5rem 0.875rem', borderRadius: '.5rem'}}
                         onClick={prevPage}
                     >Previous</Button>
-                    <p className={classes.pageNumber}>{pageNumber}</p>
+                    <p className={styles.pageNumber}>{pageNumber}</p>
                     <Button
                         style={{fontSize: '1.0625rem', padding: '0.5rem 0.875rem', borderRadius: '.5rem'}}
                         onClick={nextPage}
                     >Next</Button>
                 </div>
-                <div className={classes.pageNavContainer}>
-                    <span className={classes.selectedProjectCount}>Selected Items: {activeProjects.length}</span>
+                <div className={styles.pageNavContainer}>
+                    <span className={styles.selectedProjectCount}>Selected Items: {activeProjects.length}</span>
                     <Button
                         style={{fontSize: '1.0625rem', padding: '0.5rem 0.875rem', borderRadius: '.5rem'}}
                     >Download</Button>

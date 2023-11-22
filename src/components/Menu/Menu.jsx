@@ -1,53 +1,54 @@
 import React from 'react'
-import classes from './Menu.module.css'
+import styles from './Menu.module.css'
 import LogoIcon from "../../assets/svg/LogoIcon"
 import ProductIcon from "../../assets/svg/ProductIcon"
 import PenIcon from "../../assets/svg/PenIcon"
 import DocIcon from "../../assets/svg/DocIcon"
 import ToolIcon from "../../assets/svg/ToolIcon"
 import {useDispatch, useSelector} from "react-redux"
-import {changeComponentAction, loginAction} from "../../store/reducer"
+import {loginAction} from "../../store/reducer"
 import Store from "../../store/store"
 import SettingIcon from "../../assets/svg/SettingIcon"
 import LogoutIcon from "../../assets/svg/LogoutIcon"
+import {useNavigate} from "react-router-dom"
+import {CREATE_CUSTOM_ROUTE, PRODUCTS_ROUTE, PROJECTS_ROUTE, QUICK_TOOL_ROUTE} from "../../utils/consts"
 
 const Menu = () => {
     const dispatch = useDispatch()
-    const changeComponent = (component) => dispatch(changeComponentAction(component))
     const logOut = () => dispatch(loginAction(false))
 
-
+    const navigate = useNavigate()
 
 
     return (
-        <div className={classes.container}>
+        <div className={styles.container}>
             <LogoIcon width={'7rem'} height={'1.75rem'}/>
-            <div className={classes.menu}>
-                <div className={classes.menuItem} onClick={() => changeComponent('products')}>
+            <div className={styles.menu}>
+                <div className={styles.menuItem} onClick={() => navigate(PRODUCTS_ROUTE)}>
                     <ProductIcon width={'1.5rem'} height={'1.5rem'}/>
-                    <span className={classes.menuLabel}>Products</span>
+                    <span className={styles.menuLabel}>Products</span>
                 </div>
-                <div className={classes.menuItem} onClick={() => changeComponent('createCustom')}>
+                <div className={styles.menuItem} onClick={() => navigate(CREATE_CUSTOM_ROUTE)}>
                     <PenIcon width={'1.5rem'} height={'1.5rem'}/>
-                    <span className={classes.menuLabel}>Create Customs</span>
+                    <span className={styles.menuLabel}>Create Customs</span>
                 </div>
-                <div className={classes.menuItem} onClick={() => changeComponent('projects')}>
+                <div className={styles.menuItem} onClick={() => navigate(PROJECTS_ROUTE)}>
                     <DocIcon width={'1.5rem'} height={'1.5rem'}/>
-                    <span className={classes.menuLabel}>Projects</span>
+                    <span className={styles.menuLabel}>Projects</span>
                 </div>
-                <div className={classes.menuItem} onClick={() => changeComponent('quickTool')}>
+                <div className={styles.menuItem} onClick={() => navigate(QUICK_TOOL_ROUTE)}>
                     <ToolIcon width={'1.5rem'} height={'1.5rem'}/>
-                    <span className={classes.menuLabel}>Quick Tool</span>
+                    <span className={styles.menuLabel}>Quick Tool</span>
                 </div>
             </div>
-            <div className={classes.bottomSettings}>
-                <div className={classes.menuItem}>
+            <div className={styles.bottomSettings}>
+                <div className={styles.menuItem}>
                     <SettingIcon width={'1.5rem'} height={'1.5rem'}/>
-                    <span className={classes.menuLabel}>Setting</span>
+                    <span className={styles.menuLabel}>Setting</span>
                 </div>
-                <div className={classes.menuItem} onClick={() => logOut(false)}>
+                <div className={styles.menuItem} onClick={() => logOut(false)}>
                     <LogoutIcon width={'1.5rem'} height={'1.5rem'}/>
-                    <span className={classes.menuLabel}>Logout</span>
+                    <span className={styles.menuLabel}>Logout</span>
                 </div>
             </div>
         </div>

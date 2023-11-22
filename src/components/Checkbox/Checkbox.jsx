@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-import classes from './Checkbox.module.css'
+import styles from './Checkbox.module.css'
 
 const Checkbox = () => {
     const [isActive, setIsActive] = useState(false)
-    const activeStyles = [classes.container]
-    isActive && activeStyles.push(classes.active)
+    const activeStyles = [styles.container]
+    isActive && activeStyles.push(styles.active)
     return (
         <div className={activeStyles.join(' ')} onClick={() => setIsActive(!isActive)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
