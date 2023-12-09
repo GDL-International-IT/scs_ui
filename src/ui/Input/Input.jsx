@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './Input.module.css'
+import styles from './Input.module.css'
 
 const Input = ({placeholder, onChange, value, style}) => {
     return (
@@ -7,7 +7,7 @@ const Input = ({placeholder, onChange, value, style}) => {
             placeholder={placeholder}
             onChange={onChange}
             style={style}
-            className={classes.input}
+            className={styles.input}
             value={value}
         />
     )

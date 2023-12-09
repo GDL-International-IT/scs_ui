@@ -5,6 +5,9 @@
     height: 100vh;
     background: #E9E5DD;
     width: 15rem;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .menu {
@@ -31,6 +34,7 @@
     width: auto;
     display: flex;
     align-items: center;
+    cursor: pointer;
 
 }
 
@@ -52,11 +56,14 @@
 }
 
 .bottomSettings {
-    margin-top: 27rem;
     height: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: start;
+
+    justify-self: end;
+    margin-top: auto;
+    margin-bottom: 3rem;
     width: 9.9rem;
 }

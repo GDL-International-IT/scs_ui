@@ -2,14 +2,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+
 }
 
 .inputsContainer {
     margin-top: 4.69rem;
     margin-bottom: 1.56rem;
     height: 8.75rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
 
 }

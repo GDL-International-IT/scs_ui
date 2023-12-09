@@ -1,104 +1,115 @@
-import React, {useRef, useState} from 'react'
-import classes from './CreateCustom.module.css'
-import Button from "../../ui/Button/Button"
-import ImportIcon from "../../assets/svg/ImportIcon"
+import React, {useEffect, useRef, useState} from 'react'
+import styles from './CreateCustom.module.css'
 import Checkbox from "../Checkbox/Checkbox"
-import SavedIcon from "../../assets/svg/SavedIcon"
-import NewProjectIcon from "../../assets/svg/NewProjectIcon"
-import LeftArrowIcon from "../../assets/svg/LeftArrowIcon"
-import RightArrowIcon from "../../assets/svg/RightArrowIcon"
-import RotateIcon from "../../assets/svg/RotateIcon"
-import MoveIcon from "../../assets/svg/MoveIcon"
-import ResizeIcon from "../../assets/svg/ResizeIcon"
-import LineIcon from "../../assets/svg/LineIcon"
-import TextIcon from "../../assets/svg/TextIcon"
-import ColorIcon from "../../assets/svg/ColorIcon"
+import t_shirt1 from '../../assets/png/t-shirt-1.jpeg'
+import t_shirt2 from '../../assets/png/t-shirt-2.jpeg'
+import t_shirt3 from '../../assets/png/t-shirt-3.jpeg'
+import FabricCanvas from "../FabricCanvas/FabricCanvas"
+import Error from "../Error/Error"
 import PdfIcon from "../../assets/svg/PdfIcon"
-import spongeBob from '../../sponge-bob-gy0.png'
-import patrick from '../../unnamed.jpg'
-import MovableImage from "../MovableImage/MovableImage"
-import useInput from "../../hooks/useInput"
-import MovableLabel from "../MovableLabel/MovableLabel"
+import html2canvas from "html2canvas"
+import jsPDF from "jspdf"
 
 const CreateCustom = () => {
 
-    const [layerStyles, setLayerStyles] = useState([classes.layer])
-    const canvasRef = useRef(null)
-    const [images, setImages] = useState([])
-    const [labels, setLabels] = useState([0])
+    const [layerStyles, setLayerStyles] = useState([styles.layer])
+    const [activeLayer, setActiveLayer] = useState(1)
+    const [firstSvg, setFirstSvg] = useState('')
+    const [secondSvg, setSecondSvg] = useState('')
+    const [thirdSvg, setThirdSvg] = useState('')
+    const [isError, setIsError] = useState(false)
+    const [firstPdfImage, setFirstPdfImage] = useState('')
+    const [secondPdfImage, setSecondPdfImage] = useState('')
+    const [thirdPdfImage, setThirdPdfImage] = useState('')
 
-    const changeActiveLayer = () => {
-        if (layerStyles.includes(classes.activeLayer)) {
+
+
+    const changeActiveLayer = (layerId) => {
+        if (layerStyles.includes(styles.activeLayer)) {
             setLayerStyles([layerStyles[0]])
             return
         }
-        setLayerStyles([...layerStyles, classes.activeLayer])
+        setLayerStyles([...layerStyles, styles.activeLayer])
+        setActiveLayer(layerId)
     }
 
 
+    const generatePdf = () => {
+
+        const pdf = new jsPDF()
+
+        pdf.addImage(firstPdfImage, 'JPEG', 25, 0, 150, 62.5)
+        pdf.addImage(secondPdfImage, 'JPEG', 25, 70, 150, 62.5)
+        pdf.addImage(thirdPdfImage, 'JPEG', 25, 140, 150, 62.5)
+        pdf.save("download.pdf")
+
+
+    }
+
+
+    useEffect(() => {
+        // window.addEventListener('keypress', e => {
+        //     console.log(e.key)
+        //     // if
+        // })
+    }, [])
+
     return (
-        <div className={classes.container}>
-            <div className={classes.tools}>
-                <div onClick={() => setImages([...images, spongeBob])}>
-                    <Button
-                        style={{padding: '.5rem .62rem', justifyContent: 'space-between', width: '9.56rem'}}
-                    >
-                        Upload logo
-                        <ImportIcon width={'1rem'} height={'1rem'}/>
-                    </Button>
-                </div>
+        <div className={styles.container} onClick={() => setIsError(!isError)}>
+            {/*<Error isError={isError} />*/}
+            <FabricCanvas
+                setSvg={setFirstSvg}
+                display={activeLayer === 1 ? 'block' : 'none'}
+                canvasId={'canvas1'}
+                t_shirt={t_shirt1}
+                setPdfImage={setFirstPdfImage}
+                svg={firstSvg}
+            />
+            <FabricCanvas
+                setSvg={setSecondSvg}
+                display={activeLayer === 2 ? 'block' : 'none'}
+                canvasId={'canvas2'}
+                t_shirt={t_shirt2}
+                setPdfImage={setSecondPdfImage}
+                svg={secondSvg}
+            />
+            <FabricCanvas
+                setSvg={setThirdSvg}
+                display={activeLayer === 3 ? 'block' : 'none'}
+                canvasId={'canvas3'}
+                t_shirt={t_shirt3}
+                setPdfImage={setThirdPdfImage}
+                svg={thirdSvg}
 
-                <div className={classes.projectTools}>
-                    <SavedIcon height={'1.5rem'} width={'1.5rem'}/>
-                    <NewProjectIcon height={'1.5rem'} width={'1.5rem'}/>
-                </div>
-                <div className={classes.paintTools}>
-                    <LeftArrowIcon height={'1.5rem'} width={'1.5rem'}/>
-                    <RightArrowIcon height={'1.5rem'} width={'1.5rem'}/>
-                    <RotateIcon height={'1.5rem'} width={'1.5rem'}/>
-                    <MoveIcon height={'1.5rem'} width={'1.5rem'}/>
-                    <ResizeIcon height={'1.5rem'} width={'1.5rem'}/>
-                    <LineIcon height={'1.5rem'} width={'1.5rem'}/>
-                    <div onClick={() => setLabels([...labels, labels.length])}>
-                        <TextIcon height={'1.5rem'} width={'1.5rem'}/>
-                    </div>
+            />
 
-                    <ColorIcon height={'1.5rem'} width={'1.5rem'}/>
-                    <PdfIcon height={'1.5rem'} width={'1.5rem'}/>
-                </div>
-            </div>
-            <div
-                className={classes.canvas}
-                ref={canvasRef}
-            >
-
-                {
-                    images.map((img, index) =>
-                        <MovableImage className={classes.img} src={img} canvasRef={canvasRef} zIndex={index}/>
-                    )
-                }
-                {
-                    labels.map(label =>
-                        <MovableLabel className={classes.label} canvasRef={canvasRef} id={label}/>
-                    )
-                }
+            <div onClick={generatePdf} className={styles.pdfIcon}>
+                <PdfIcon height={'1.5rem'} width={'1.5rem'}/>
             </div>
 
-            <div className={classes.layerContainer}>
-                <div className={layerStyles.join(' ')}>
-                    <div className={classes.checkbox} onClick={changeActiveLayer}>
-                        <Checkbox/>
+            <div className={styles.layerContainer}>
+                <div className={styles.layer} onClick={() => changeActiveLayer(1)}>
+                    <div className={styles.checkbox}>
+                        <Checkbox isActive={activeLayer === 1}/>
                     </div>
+                    <img src={t_shirt1} className={styles.layerImg}/>
+                    <div dangerouslySetInnerHTML={{__html: firstSvg}} className={styles.canvasSvg}></div>
                 </div>
-                <div className={classes.layer}>
-                    <div className={classes.checkbox}>
-                        <Checkbox/>
+                <div className={styles.layer} onClick={() => changeActiveLayer(2)}>
+                    <div className={styles.checkbox}>
+                        <Checkbox isActive={activeLayer === 2}/>
                     </div>
+                    <img src={t_shirt2} className={styles.layerImg}/>
+                    <div dangerouslySetInnerHTML={{__html: secondSvg}} className={styles.canvasSvg}></div>
+
                 </div>
-                <div className={classes.layer}>
-                    <div className={classes.checkbox}>
-                        <Checkbox/>
+                <div className={styles.layer} onClick={() => changeActiveLayer(3)}>
+                    <div className={styles.checkbox}>
+                        <Checkbox isActive={activeLayer === 3}/>
                     </div>
+                    <img src={t_shirt3} className={styles.layerImg}/>
+                    <div dangerouslySetInnerHTML={{__html: thirdSvg}} className={styles.canvasSvg}></div>
+
                 </div>
             </div>
         </div>

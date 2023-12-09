@@ -35,7 +35,7 @@ const MovableImage = ({src, canvasRef, className}) => {
             src={src}
             alt={'src'}
             className={className}
-            style={{left: imgCoords[0], top: imgCoords[1], cursor: isDragging ? 'grabbing' : 'grab', zIndex: isDragging ? '2' : '0'}}
+            style={{left: imgCoords[0], top: imgCoords[1], cursor: isDragging ? 'grabbing' : 'grab', zIndex: isDragging ? '2' : '1'}}
             ref={imgRef}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}

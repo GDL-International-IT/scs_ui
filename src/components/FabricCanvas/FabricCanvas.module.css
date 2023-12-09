@@ -7,7 +7,6 @@
     padding-top: 1.25rem;
     padding-left: 1.56rem;
     background: white;
-    position: relative;
 }
 
 .tools {
@@ -31,7 +30,7 @@
     align-items: center;
     justify-self: right;
     margin-left: auto;
-    margin-right: 1.5rem;
+    margin-right: 4rem;
 
 }
 
@@ -115,9 +114,8 @@
 
 .layerImg {
     position: absolute;
-    user-select: none;
-    width: auto;
-    height: 4.2rem;
+    width: 3.7rem;
+    height: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -129,10 +127,4 @@
     height: 5rem;
     border-radius: 0.625rem;
 
-}
-
-.pdfIcon {
-    position: absolute;
-    right: 1.5rem;
-    top: 1.7rem;
 }
